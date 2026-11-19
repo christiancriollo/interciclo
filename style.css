@@ -1,0 +1,169 @@
+/* ---------- Variables ---------- */
+:root {
+  --fondo: #f2f6f9;
+  --papel: #ffffff;
+  --tinta: #13293d;
+  --tinta-suave: #4a5d6e;
+  --acento: #0b7285;
+  --acento-oscuro: #095c6b;
+  --cielo: #d9ecf2;
+  --borde: #c9d8e2;
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+  background: var(--fondo);
+  color: var(--tinta);
+  line-height: 1.65;
+}
+
+img { max-width: 100%; display: block; }
+
+/* ---------- Cabecera y menú ---------- */
+.cabecera {
+  background: var(--tinta);
+  padding: 1.2rem 1.5rem 0;
+}
+
+.logo {
+  max-width: 1000px;
+  margin: 0 auto 1rem;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.menu {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Pestañas */
+.menu a {
+  padding: 0.7rem 1.4rem;
+  color: #b9cddb;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 10px 10px 0 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.menu a:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+.menu a.activo {
+  background: var(--fondo);
+  color: var(--tinta);
+}
+
+.menu a:focus-visible,
+.pie a:focus-visible {
+  outline: 3px solid #7fd1e0;
+  outline-offset: 2px;
+}
+
+/* ---------- Contenido ---------- */
+.contenedor {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+h2 { font-size: 2rem; line-height: 1.2; margin-bottom: 0.8rem; }
+h3 { font-size: 1.35rem; margin-bottom: 0.5rem; color: var(--acento-oscuro); }
+
+.subtitulo {
+  margin: 3rem 0 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--acento);
+  font-size: 1.5rem;
+}
+
+.texto p {
+  color: var(--tinta-suave);
+  max-width: 62ch;
+}
+
+/* Portada de cada página */
+.portada {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  background: var(--cielo);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.portada:not(:has(figure)) { grid-template-columns: 1fr; }
+
+/* Bloques de cada tema */
+.tema {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 2rem;
+  align-items: center;
+  background: var(--papel);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.portada + .tema { margin-top: 2rem; }
+
+/* Alterna imagen a la derecha */
+.tema.invertido { grid-template-columns: 1.4fr 1fr; }
+.tema.invertido figure { order: 2; }
+
+/* ---------- Imágenes ---------- */
+figure {
+  background: var(--cielo);
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 160px;          /* mantiene el espacio si aún no pegas la imagen */
+}
+
+figure img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+figcaption {
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--tinta-suave);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* ---------- Pie ---------- */
+.pie {
+  background: var(--tinta);
+  color: #b9cddb;
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- Adaptable a celular ---------- */
+@media (max-width: 760px) {
+  .portada,
+  .tema,
+  .tema.invertido {
+    grid-template-columns: 1fr;
+  }
+
+  .tema.invertido figure { order: 0; }
+
+  .menu a { flex: 1; text-align: center; padding: 0.7rem 0.5rem; }
+
+  h2 { font-size: 1.6rem; }
+}
